@@ -4,14 +4,19 @@ function display(cartProduct) {
     const nameList = document.getElementById('name-list');
     nameList.innerHTML = '';
     for (let i = 0; i < cartProduct.length; i++) {
-        const li = document.createElement('li');
+        if (5 > i) {
+            const li = document.createElement('li');
             li.innerText = cartProduct[i]
             nameList.appendChild(li);
-        
+        } else {
+            alert("Hello! I am an alert box!")
+        }
     }
 }
 
 function addToCard(element) {
+    element.disabled=true;
+    element.style.backgroundColor="gray"
 
     const productName = element.parentNode.children[0].innerText;
 
