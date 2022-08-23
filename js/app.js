@@ -9,7 +9,7 @@ function display(cartProduct) {
             li.innerText = cartProduct[i]
             nameList.appendChild(li);
         } else {
-            alert("Hello! I am an alert box!")
+            alert("don't select more than 5")
         }
     }
 }
