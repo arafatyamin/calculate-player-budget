@@ -22,8 +22,6 @@ function addToCard(element) {
 
     cartArray.push(productName)
     display(cartArray)
-    
-
 }
 
 // budget calculation
