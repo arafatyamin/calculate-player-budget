@@ -1,51 +1,49 @@
 const cartArray = [];
 
-function display(cartProduct) {
+function display() {
     const nameList = document.getElementById('name-list');
     nameList.innerHTML = '';
-    for (let i = 0; i < cartProduct.length; i++) {
-        if (5 > i) {
-            const li = document.createElement('li');
-            li.innerText = cartProduct[i]
-            nameList.appendChild(li);
-        } else {
-            alert("don't select more than 5")
-        }
-    }
+    
+    cartArray.map(item =>{
+        const li = document.createElement('li');
+        li.innerText = item
+        nameList.appendChild(li);
+    })
+    
 }
 
 function addToCard(element) {
-    element.disabled=true;
-    element.style.backgroundColor="gray"
-
-    const productName = element.parentNode.children[0].innerText;
+    if (cartArray.length < 5) {
+        element.disabled=true;
+        element.style.backgroundColor="gray"
+        const productName = element.parentNode.children[0].innerText;
 
     cartArray.push(productName)
-    display(cartArray)
+    display()
+    }else {
+        alert("don't select more than 5")
+    }
 }
 
 // budget calculation
 document.getElementById('calculate-price').addEventListener('click', function () {
-    const perPlayerPrice = getInputFieldValueById('per-player');
+    const perPlayerPrice = document.getElementById('perPlayer').value;
 
     const nameListElement = document.getElementById('name-list');
     const nameLengthString = nameListElement.children.length;
-    const nameLength = parseInt(nameLengthString);
 
-    const totalPlayerPrice = perPlayerPrice * nameLength;
-
+    const totalPlayerPrice = parseInt(perPlayerPrice) * parseInt(nameLengthString);
     const playerExpense = document.getElementById('player-expenses');
     playerExpense.innerText = totalPlayerPrice;
 })
 
 document.getElementById('total-calculate-btn').addEventListener('click', function () {
-    const playerTotalCost = getElementValueById('player-expenses');
+    const playerCost = document.getElementById('player-expenses').innerText;
+    const managerCost = document.getElementById('manager-cost').value;
 
-    const managerCost = getInputFieldValueById('manager-cost');
+    const coachCost = document.getElementById('coach-cost').value;
 
-    const coachCost = getInputFieldValueById('coach-cost');
-
-    const totalCost = playerTotalCost + managerCost + coachCost;
+    const totalCost = parseInt(playerCost) + parseInt(managerCost) + parseInt(coachCost);
 
     const totalElement = document.getElementById('total-cost');
     totalElement.innerText = totalCost;
